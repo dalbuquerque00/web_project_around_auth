@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
-import EditButton from "../../images/Edit_button.svg";
+import EditButton from "../../images/Edit_Button.svg";
 import Avatar from "../../images/avatar.jpg";  
 import Popup from "./components/Popup/popup";
-import NewCard from "./components/form/NewCard/newCard";
+import NewCard from "./components/Form/NewCard/newCard";
 import EditProfile from "./components/Form/EditProfile/editProfile";
 import EditAvatar from "./components/Form/EditAvatar/editAvatar";
 import Card from "./components/Card/card";

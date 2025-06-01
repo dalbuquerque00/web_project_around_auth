@@ -36,7 +36,7 @@ export const authorize = async (email, password) => {
   return checkResponse(response);
 };
 
-// Verificação de TOKEN
+// Verificação de Token
 export const checkToken = async (token) => {
   const response = await fetch(`${BASE_URL}/users/me`, {
     method: 'GET',
