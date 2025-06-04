@@ -22,6 +22,44 @@
   align-items: center;
 }
 
+.popup_type_image {
+  background: rgba(0,0,0,0.8);
+}
+
+.popup_type_image .popup__container {
+  background: none;
+  box-shadow: none;
+  padding: 0;
+  max-width: unset;
+  width: auto;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup_type_image .popup__close {
+  position: absolute;
+  top: -30px;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  z-index: 2;
+}
+.popup__image {
+  max-width: 75vw;
+  max-height: 75vh;
+  border-radius: 8px;
+  display: block;
+  margin: 0 auto;
+}
+.popup__caption {
+  margin-top: 10px;
+  color: white;
+  text-align: left;
+}
+
 .popup_add {
   position: fixed;
   top: 0;
@@ -70,7 +108,8 @@
 .popup__container {
   position: relative;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: stretch;
   background-color: white;
   padding: 34px 36px 37px;
   border-radius: 10px;
@@ -120,6 +159,7 @@
   display: flex;
   flex-direction: column;
   gap: 0;
+  width: 100%;
 }
 
 .popup__input {
@@ -215,7 +255,7 @@
     padding: 7.81vw 6.87vw;
   }
   .popup__form {
-    gap: 9.37vw;
+    gap: 2.37vw;
   }
   .popup__close {
     top: -10vw;
@@ -225,55 +265,14 @@
   }
   .popup__title {
     font-size: 2.25em;
-    margin-bottom: 76px;
+    margin-bottom: 20px;
   }
   .popup__button {
     font-size: 1.75em;
     height: 14.37vw;
-    margin-top: 5vw;
   }
   .popup__input {
     font-size: 1.75em;
     padding: 0 0 2.81vw;
   }
-}
-
-/* Teste para o popup */
-
-.popup_type_image {
-  background: rgba(0,0,0,0.8);
-}
-
-.popup_type_image .popup__container {
-  background: none;
-  box-shadow: none;
-  padding: 0;
-  max-width: unset;
-  width: auto;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.popup_type_image .popup__close {
-  position: absolute;
-  top: -30px;
-  right: 0;
-  width: 40px;
-  height: 40px;
-  z-index: 2;
-}
-.popup__image {
-  max-width: 75vw;
-  max-height: 75vh;
-  border-radius: 8px;
-  display: block;
-  margin: 0 auto;
-}
-.popup__caption {
-  margin-top: 10px;
-  color: white;
-  text-align: left;
 }

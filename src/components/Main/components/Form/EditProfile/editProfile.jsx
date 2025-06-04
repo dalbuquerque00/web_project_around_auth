@@ -6,11 +6,17 @@ function EditProfile({ isOpen, onClose, onUpdateUser }) {
   const currentUser = useContext(CurrentUserContext);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
+  const [isNameTouched, setIsNameTouched] = useState(false);
+  const [isDescriptionTouched, setIsDescriptionTouched] = useState(false);
 
   useEffect(() => {
     if (currentUser?.name && currentUser?.about) {
       setName(currentUser.name);
       setDescription(currentUser.about);
+    }
+    if (!isOpen) {
+      setIsNameTouched(false);
+      setIsDescriptionTouched(false);
     }
   }, [currentUser, isOpen]);
 
@@ -24,10 +30,12 @@ function EditProfile({ isOpen, onClose, onUpdateUser }) {
 
   function handleNameChange(e) {
     setName(e.target.value);
+    setIsNameTouched(true);
   }
 
   function handleDescriptionChange(e) {
     setDescription(e.target.value);
+    setIsDescriptionTouched(true);
   }
 
   return (
@@ -37,6 +45,7 @@ function EditProfile({ isOpen, onClose, onUpdateUser }) {
       isOpen={isOpen}
       onClose={onClose}
     >
+      <h2 className="popup__title">Editar Perfil</h2>
       <form className="popup__form" name="edit-profile" onSubmit={handleSubmit}>
         <input
           type="text"
@@ -49,7 +58,11 @@ function EditProfile({ isOpen, onClose, onUpdateUser }) {
           value={name || ''}
           onChange={handleNameChange}
         />
-        <span className="popup__error" id="name-error"></span>
+        <span className="popup__error" id="name-error">
+          {isNameTouched && name.trim().length < 2
+            ? 'O nome deve ter pelo menos 2 caracteres'
+            : ''}
+        </span>
         <input
           type="text"
           name="description"
@@ -61,7 +74,11 @@ function EditProfile({ isOpen, onClose, onUpdateUser }) {
           value={description || ''}
           onChange={handleDescriptionChange}
         />
-        <span className="popup__error" id="description-error"></span>
+        <span className="popup__error" id="description-error">
+          {isDescriptionTouched && description.trim().length < 2
+            ? 'A descrição deve ter pelo menos 2 caracteres'
+            : ''}
+        </span>
         <button type="submit" className="popup__button">
           Salvar
         </button>

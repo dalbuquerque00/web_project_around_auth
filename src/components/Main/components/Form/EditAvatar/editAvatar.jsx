@@ -4,6 +4,7 @@ import Popup from '../../Popup/popup';
 export default function EditAvatar({ isOpen, onClose, onUpdateAvatar }) {
   const [avatarLink, setAvatarLink] = useState('');
   const [isFormValid, setIsFormValid] = useState(false);
+  const [isTouched, setIsTouched] = useState(false);
 
   const isValidUrl = (url) => {
     try {
@@ -19,19 +20,31 @@ export default function EditAvatar({ isOpen, onClose, onUpdateAvatar }) {
     setIsFormValid(isLinkValid);
   }, [avatarLink]);
 
+  useEffect(() => {
+    if (!isOpen) {
+      setAvatarLink('');
+      setIsFormValid(false);
+      setIsTouched(false);
+    }
+  }, [isOpen]);
+
   const handleAvatarChange = (event) => {
     setAvatarLink(event.target.value);
+    setIsTouched(true);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     if (event.target.checkValidity() && isFormValid) {
       onUpdateAvatar(avatarLink);
+      setAvatarLink('');
+      setIsFormValid(false);
     }
   };
 
   return (
     <Popup isOpen={isOpen} onClose={onClose} title="Editar Avatar">
+      <h2 className="popup__title">Editar Avatar</h2>
       <form
         id="avatar-form"
         className="popup__form"
@@ -50,11 +63,11 @@ export default function EditAvatar({ isOpen, onClose, onUpdateAvatar }) {
             onChange={handleAvatarChange}
           />
           <span className="popup__error">
-            {avatarLink.trim().length === 0 ? 
-              'Por favor, introduza uma URL válida' : 
-              !isValidUrl(avatarLink) ? 
-              'Por favor, introduza uma URL válida' : 
-              '\u00A0'}
+            {isTouched && (avatarLink.trim().length === 0
+              ? 'Por favor, introduza uma URL válida'
+              : !isValidUrl(avatarLink)
+                ? 'Por favor, introduza uma URL válida'
+                : '\u00A0')}
           </span>
         </div>
 
