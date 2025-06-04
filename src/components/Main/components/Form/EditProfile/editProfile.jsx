@@ -63,7 +63,7 @@ function EditProfile({ isOpen, onClose, onUpdateUser }) {
         />
         <span className="popup__error" id="description-error"></span>
         <button type="submit" className="popup__button">
-          Guardar
+          Salvar
         </button>
       </form>
     </Popup>

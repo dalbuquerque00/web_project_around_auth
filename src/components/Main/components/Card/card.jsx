@@ -2,7 +2,7 @@ import { useContext } from "react";
 import likeIcon from "../../../../images/like.svg";
 import { CurrentUserContext } from '../../../../contexts/CurrentUserContext';
 
-function Card({ card, handleOpenPopup, onCardLike, onCardDelete }) {
+function Card({ card, onCardClick, onCardLike, onCardDelete }) {
   const { currentUser } = useContext(CurrentUserContext);
 
   function handleLikeClick() {  
@@ -24,14 +24,7 @@ function Card({ card, handleOpenPopup, onCardLike, onCardDelete }) {
         className="elements__item-image"   
         src={card.link}   
         alt={card.name}   
-        onClick={() => handleOpenPopup({  
-          children: (  
-            <>  
-              <img src={card.link} alt={card.name} className="popup__image" />  
-              <h3 className="popup__description">{card.name}</h3>  
-            </>  
-          )  
-        })}  
+        onClick={() => onCardClick(card)}  
       />  
       <div className="elements__item-content">  
         <h2 className="elements__item-title">{card.name}</h2>  

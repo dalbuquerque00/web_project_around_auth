@@ -8,7 +8,7 @@ class Api {
   _getHeaders() {
     return {
       'Content-Type': 'application/json',
-      'Authorization': '44300d4b-fe58-42de-a817-6a20b8affcdd' // Token dos sprints anteriores
+      'Authorization': '44300d4b-fe58-42de-a817-6a20b8affcdd' // Token
     };
   }
 
@@ -71,8 +71,8 @@ class Api {
   }
 
   changeLikeCardStatus(cardId, isLiked) {
-    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
-      method: isLiked ? 'DELETE' : 'PUT',
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+      method: isLiked ? 'PUT' : 'DELETE',
       headers: this._getHeaders()
     })
     .then(this._checkResponse);

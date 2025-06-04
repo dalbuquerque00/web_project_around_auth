@@ -2,10 +2,10 @@
 export default function ImagePopup({ card, isOpen, onClose }) {
   return (
     <div className={`popup popup_type_image ${isOpen ? 'popup_opened' : ''}`}>
-      <div className="popup__container popup__container_type_image">
+      <div className="popup__container">
         <button
           type="button"
-          className="popup__close-button"
+          className="popup__close"
           onClick={onClose}
           aria-label="Sair"
         />

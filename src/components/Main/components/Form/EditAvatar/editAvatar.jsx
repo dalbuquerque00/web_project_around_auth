@@ -1,10 +1,9 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { CurrentUserContext } from '../../../../../contexts/CurrentUserContext';
+import React, { useState, useEffect } from 'react';
+import Popup from '../../Popup/popup';
 
-export default function EditAvatar() {
+export default function EditAvatar({ isOpen, onClose, onUpdateAvatar }) {
   const [avatarLink, setAvatarLink] = useState('');
   const [isFormValid, setIsFormValid] = useState(false);
-  const { handleUpdateAvatar } = useContext(CurrentUserContext);
 
   const isValidUrl = (url) => {
     try {
@@ -27,44 +26,46 @@ export default function EditAvatar() {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (event.target.checkValidity() && isFormValid) {
-      handleUpdateAvatar(avatarLink);
+      onUpdateAvatar(avatarLink);
     }
   };
 
   return (
-    <form
-      id="avatar-form"
-      className="popup__form"
-      name="avatar"
-      noValidate
-      onSubmit={handleSubmit}
-    >
-      <div className="popup__field">
-        <input
-          type="url"
-          name="avatar"
-          className="popup__input popup__input_avatar"
-          placeholder="Link da imagem"
-          required
-          value={avatarLink}
-          onChange={handleAvatarChange}
-        />
-        <span className="popup__error">
-          {avatarLink.trim().length === 0 ? 
-            'Por favor, introduza uma URL válida' : 
-            !isValidUrl(avatarLink) ? 
-            'Por favor, introduza uma URL válida' : 
-            '\u00A0'}
-        </span>
-      </div>
-
-      <button
-        type="submit"
-        className={`popup__button ${!isFormValid ? 'popup__button_disabled' : ''}`}
-        disabled={!isFormValid}
+    <Popup isOpen={isOpen} onClose={onClose} title="Editar Avatar">
+      <form
+        id="avatar-form"
+        className="popup__form"
+        name="avatar"
+        noValidate
+        onSubmit={handleSubmit}
       >
-        Guardar
-      </button>
-    </form>
+        <div className="popup__field">
+          <input
+            type="url"
+            name="avatar"
+            className="popup__input popup__input_avatar"
+            placeholder="Link da imagem"
+            required
+            value={avatarLink}
+            onChange={handleAvatarChange}
+          />
+          <span className="popup__error">
+            {avatarLink.trim().length === 0 ? 
+              'Por favor, introduza uma URL válida' : 
+              !isValidUrl(avatarLink) ? 
+              'Por favor, introduza uma URL válida' : 
+              '\u00A0'}
+          </span>
+        </div>
+
+        <button
+          type="submit"
+          className={`popup__button ${!isFormValid ? 'popup__button_disabled' : ''}`}
+          disabled={!isFormValid}
+        >
+          Salvar
+        </button>
+      </form>
+    </Popup>
   );
 }

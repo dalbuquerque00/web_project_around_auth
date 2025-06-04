@@ -88,7 +88,7 @@ export default function NewCard({ handleAddPlaceSubmit }) {
         className={`popup__button ${!isFormValid ? 'popup__button_disabled' : ''}`}    
         disabled={!isFormValid}    
       >    
-        Crear    
+        Adicionar  
       </button>  
     </form>  
   );  
